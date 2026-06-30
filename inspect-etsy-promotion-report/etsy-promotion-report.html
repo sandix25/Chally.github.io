@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chally - Etsy运营晋升报告</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/theme/simple.css" />
+  <style>
+    :root {
+      --bg: #fbf6ee;
+      --panel: #fffdf8;
+      --text: #2f2a24;
+      --muted: #7a7166;
+      --line: #eadfce;
+      --orange: #e9a66a;
+      --orange-soft: #fff0df;
+      --green: #8fb996;
+      --green-soft: #edf7ef;
+      --shadow: 0 18px 45px rgba(91, 72, 47, 0.10);
+      --radius: 18px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    .reveal {
+      background:
+        radial-gradient(circle at 12% 18%, rgba(233, 166, 106, 0.18), transparent 28%),
+        radial-gradient(circle at 88% 82%, rgba(143, 185, 150, 0.18), transparent 30%),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    .reveal .slides { text-align: left; }
+    .reveal section {
+      box-sizing: border-box;
+      height: 720px;
+      overflow-y: auto !important;
+      overflow-x: hidden;
+      padding: 34px 64px 46px 56px;
+    }
+
+    .reveal section::-webkit-scrollbar { width: 8px; }
+    .reveal section::-webkit-scrollbar-track {
+      background: rgba(234, 223, 206, 0.45);
+      border-radius: 999px;
+    }
+    .reveal section::-webkit-scrollbar-thumb {
+      background: rgba(233, 166, 106, 0.65);
+      border-radius: 999px;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+    .reveal h1 {
+      color: var(--text);
+      font-size: 58px;
+      line-height: 1.12;
+      letter-spacing: 0;
+      font-weight: 800;
+    }
+    .reveal h2 {
+      color: var(--text);
+      font-size: 42px;
+      line-height: 1.18;
+      letter-spacing: 0;
+      font-weight: 800;
+    }
+    .reveal h3 {
+      color: var(--text);
+      font-size: 24px;
+      letter-spacing: 0;
+      font-weight: 750;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      color: var(--green);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 3px;
+      border-radius: 999px;
+      background: var(--green);
+    }
+
+    .subtitle {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 24px;
+      line-height: 1.55;
+      max-width: 780px;
+    }
+    .slide-header { margin-bottom: 30px; }
+    .slide-note {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.5;
+    }
+
+    .cover {
+      display: flex !important;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 720px;
+    }
+    .cover-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 42px;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 40px;
+      padding: 0 16px;
+      border-radius: 999px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 17px;
+      box-shadow: 0 8px 24px rgba(91, 72, 47, 0.06);
+    }
+    .cover-statement {
+      margin-top: 58px;
+      padding: 22px 26px;
+      max-width: 860px;
+      border-left: 6px solid var(--orange);
+      background: rgba(255, 253, 248, 0.72);
+      box-shadow: var(--shadow);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: 25px;
+      line-height: 1.55;
+      font-weight: 650;
+    }
+
+    .content-flex {
+      display: flex;
+      gap: 28px;
+      align-items: stretch;
+    }
+    .main-panel {
+      flex: 1.1;
+      padding: 30px;
+      border-radius: var(--radius);
+      background: rgba(255, 253, 248, 0.78);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .side-panel {
+      flex: 0.9;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .check-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 24px;
+    }
+    .check-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 18px;
+      border-radius: 14px;
+      background: #fff;
+      border: 1px solid var(--line);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .check-item:hover,
+    .metric-card:hover,
+    .proof-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 36px rgba(91, 72, 47, 0.12);
+    }
+    .icon {
+      flex: 0 0 auto;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: var(--green-soft);
+      color: var(--green);
+    }
+    .icon svg {
+      width: 23px;
+      height: 23px;
+      stroke-width: 2.2;
+    }
+    .check-title {
+      color: var(--text);
+      font-size: 21px;
+      font-weight: 750;
+      margin-bottom: 6px;
+    }
+    .check-desc {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.45;
+    }
+
+    .metric-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+    .metric-card {
+      min-height: 122px;
+      padding: 22px;
+      border-radius: var(--radius);
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: 0 12px 30px rgba(91, 72, 47, 0.08);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .metric-card.half {
+      flex: 1 1 calc(50% - 9px);
+      min-width: 220px;
+    }
+    .metric-card.orange {
+      background: var(--orange-soft);
+      border-color: rgba(233, 166, 106, 0.35);
+    }
+    .metric-card.green {
+      background: var(--green-soft);
+      border-color: rgba(143, 185, 150, 0.35);
+    }
+    .metric-label {
+      color: var(--muted);
+      font-size: 17px;
+      font-weight: 650;
+      margin-bottom: 12px;
+    }
+    .metric-value {
+      color: var(--text);
+      font-size: 34px;
+      line-height: 1.15;
+      font-weight: 820;
+    }
+    .metric-desc {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.4;
+    }
+    .highlight {
+      color: var(--orange);
+      font-weight: 800;
+    }
+    .small-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 20px;
+    }
+    .mini-card {
+      padding: 16px;
+      border-radius: 14px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+    .mini-label {
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+    .mini-value {
+      color: var(--text);
+      font-size: 21px;
+      font-weight: 760;
+    }
+
+    .proof-card {
+      padding: 12px;
+      border-radius: var(--radius);
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: 0 12px 30px rgba(91, 72, 47, 0.08);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .proof-card img {
+      width: 100%;
+      max-height: 285px;
+      object-fit: contain;
+      display: block;
+      border-radius: 12px;
+      background: #fff;
+    }
+    .proof-caption {
+      padding: 10px 4px 2px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.4;
+    }
+    .image-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    @media (max-width: 900px) {
+      .reveal section { padding: 28px 40px 42px 28px; }
+      .reveal h1 { font-size: 42px; }
+      .reveal h2 { font-size: 34px; }
+      .subtitle { font-size: 20px; }
+      .content-flex { flex-direction: column; }
+      .small-grid,
+      .image-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section class="cover" data-transition="fade">
+        <div class="eyebrow">P3 晋升 P4</div>
+        <h1>Etsy 跨境电商运营<br />季度晋升报告</h1>
+        <p class="subtitle">
+          从运营助理到运营专员：围绕经营结果、从 0 到 1 新店能力、产品判断与持续增长能力进行汇报。
+        </p>
+        <div class="cover-meta">
+          <div class="tag">姓名：Chally</div>
+          <div class="tag">当前职位：运营助理 / P3</div>
+          <div class="tag">目标职位：运营专员 / P4</div>
+          <div class="tag">平台：Etsy 跨境电商</div>
+        </div>
+        <div class="cover-statement">
+          核心汇报主线：我已从基础执行成长为能够独立完成 Etsy 店铺从 0 到 1、主推款验证和持续优化的运营人员。
+        </div>
+      </section>
+
+      <section data-transition="slide">
+        <div class="slide-header">
+          <div class="eyebrow">资格自查</div>
+          <h2>对照 P4 标准，证明已具备独立经营能力</h2>
+          <p class="slide-note">
+            本次申报重点对应 P3 到 P4：连续 3 个月个人人效比达标、新店从 0 到 1、主推款为公司当前未做品。
+          </p>
+        </div>
+        <div class="content-flex">
+          <div class="main-panel">
+            <h3>晋升条件匹配情况</h3>
+            <div class="check-list">
+              <div class="check-item">
+                <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3-4 3 2 4-7"/></svg></div>
+                <div>
+                  <div class="check-title">连续 3 个月个人人效比</div>
+                  <div class="check-desc">当前财务口径数据待补充，后续将以月度核算数据作为最终证明材料。</div>
+                </div>
+              </div>
+              <div class="check-item">
+                <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 21h18"/><path d="M6 21V8l6-4 6 4v13"/><path d="M9 21v-6h6v6"/></svg></div>
+                <div>
+                  <div class="check-title">新店从 0 到 1</div>
+                  <div class="check-desc">3 月 4 日正式开店，3 月 19 日完成首单，完成从搭建、上架、测试到出单的闭环。</div>
+                </div>
+              </div>
+              <div class="check-item">
+                <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3l2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 16.3 6.7 19.1l1-5.8-4.2-4.1 5.9-.9L12 3z"/></svg></div>
+                <div>
+                  <div class="check-title">主推款为公司未做品</div>
+                  <div class="check-desc">主推款：NFC 磁吸音乐盒冰箱贴，具备可定制照片与歌曲、旋转发光、送礼属性等差异化卖点。</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="side-panel">
+            <div class="metric-card orange">
+              <div class="metric-label">新店启动效率</div>
+              <div class="metric-value">15 天首单</div>
+              <div class="metric-desc">3 月 4 日开店，3 月 19 日完成首单。</div>
+            </div>
+            <div class="metric-card green">
+              <div class="metric-label">主推款方向</div>
+              <div class="metric-value">NFC 音乐盒冰箱贴</div>
+              <div class="metric-desc">公司当前未做品，具备新品类验证价值。</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">待补充材料</div>
+              <div class="metric-value" style="font-size: 27px;">3 个月人效比</div>
+              <div class="metric-desc">后续补入财务复核数据后，可作为晋升硬性条件证明。</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section data-transition="slide">
+        <div class="slide-header">
+          <div class="eyebrow">经营结果</div>
+          <h2>核心经营结果总览</h2>
+          <p class="slide-note">
+            新店在 3-6 月完成从冷启动到放量：总访问 21.3K，累计订单 321，收入 NZ$17,029.07。
+          </p>
+        </div>
+        <div class="content-flex">
+          <div class="main-panel">
+            <h3>经营数据亮点</h3>
+            <div class="metric-grid" style="margin-top: 24px;">
+              <div class="metric-card orange half">
+                <div class="metric-label">总收入</div>
+                <div class="metric-value">NZ$17,029.07</div>
+                <div class="metric-desc">统计周期：2026 年 3 月 - 6 月 24 日。</div>
+              </div>
+              <div class="metric-card green half">
+                <div class="metric-label">累计订单</div>
+                <div class="metric-value">321 单</div>
+                <div class="metric-desc">从 3 月 5 单增长至 5 月 165 单，完成明显放量。</div>
+              </div>
+              <div class="metric-card green half">
+                <div class="metric-label">累计访问</div>
+                <div class="metric-value">21.3K</div>
+                <div class="metric-desc">说明新店已获得持续流量基础。</div>
+              </div>
+              <div class="metric-card orange half">
+                <div class="metric-label">广告效率</div>
+                <div class="metric-value">ROAS 3.68</div>
+                <div class="metric-desc">开店以来 Etsy Ads 带来 113 单与 US$4,453.70 收入。</div>
+              </div>
+            </div>
+            <div class="image-grid">
+              <div class="proof-card">
+                <img src="etsy-promotion-assets/image5.png" alt="Etsy 3-6月店铺数据总览截图" />
+                <div class="proof-caption">Etsy Stats：3-6 月总访问、订单与收入。</div>
+              </div>
+              <div class="proof-card">
+                <img src="etsy-promotion-assets/image10.png" alt="Etsy Ads 开店以来广告数据截图" />
+                <div class="proof-caption">Etsy Ads：开店以来 ROAS 与广告订单表现。</div>
+              </div>
+            </div>
+          </div>
+          <div class="side-panel">
+            <div class="metric-card">
+              <div class="metric-label">月度销售走势</div>
+              <div class="metric-value" style="font-size: 28px;">NZ$230.62 → NZ$8,884.09</div>
+              <div class="metric-desc">3 月至 5 月销售额快速增长，6 月最新销售额达 NZ$5,986.39。</div>
+            </div>
+            <div class="small-grid">
+              <div class="mini-card"><div class="mini-label">3 月销售</div><div class="mini-value">NZ$230.62</div></div>
+              <div class="mini-card"><div class="mini-label">4 月销售</div><div class="mini-value">NZ$4,533.35</div></div>
+              <div class="mini-card"><div class="mini-label">5 月销售</div><div class="mini-value">NZ$8,884.09</div></div>
+              <div class="mini-card"><div class="mini-label">6 月销售</div><div class="mini-value">NZ$5,986.39</div></div>
+            </div>
+            <div class="metric-card green">
+              <div class="metric-label">核心结论</div>
+              <div class="metric-value" style="font-size: 27px;">已形成独立经营结果</div>
+              <div class="metric-desc">从新店冷启动到订单放量，经营数据可通过后台截图追溯。</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section data-transition="slide">
+        <div class="slide-header">
+          <div class="eyebrow">0 到 1 案例</div>
+          <h2>新店从 0 到 1：NFC 音乐盒冰箱贴</h2>
+          <p class="slide-note">
+            从市场机会、竞品差异、目标用户到售后问题复盘，证明自己具备独立完成新品类测试的能力。
+          </p>
+        </div>
+        <div class="content-flex">
+          <div class="main-panel">
+            <h3>项目判断与执行路径</h3>
+            <div class="check-list">
+              <div class="check-item">
+                <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
+                <div>
+                  <div class="check-title">市场机会判断</div>
+                  <div class="check-desc">无需额外设备即可播放歌曲，产品可旋转发光，可定制照片和歌曲，且定价不廉价，适合礼品场景。</div>
+                </div>
+              </div>
+              <div class="check-item">
+                <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 7l-8-4-8 4 8 4 8-4z"/><path d="M4 12l8 4 8-4"/><path d="M4 17l8 4 8-4"/></svg></div>
+                <div>
+                  <div class="check-title">竞品差异分析</div>
+                  <div class="check-desc">竞品多依赖手机 NFC 播放，材质以单薄亚克力为主，定制照片选择较少；本产品强化质感和可定制卖点。</div>
+                </div>
+              </div>
+              <div class="check-item">
+                <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 7v5l3 2"/><path d="M17 3h4v4"/></svg></div>
+                <div>
+                  <div class="check-title">用户与使用场景</div>
+                  <div class="check-desc">核心客群包括粉丝经济用户、家庭合照纪念用户和送朋友礼品用户，其中欧美歌手相关定制需求更明显。</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="side-panel">
+            <div class="metric-card orange">
+              <div class="metric-label">启动节点</div>
+              <div class="metric-value">3/4 - 3/19</div>
+              <div class="metric-desc">正式开店至完成首单共 15 天。</div>
+            </div>
+            <div class="metric-card green">
+              <div class="metric-label">成功原因</div>
+              <div class="metric-value" style="font-size: 27px;">新奇 + 定制 + 推流</div>
+              <div class="metric-desc">Etsy 同款较少，定制功能不单一，并获得国外博主推流。</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">问题复盘</div>
+              <div class="metric-value" style="font-size: 27px;">品质与交付仍需优化</div>
+              <div class="metric-desc">前期芯片损坏率较高，制作周期偏长或出现错误，带来售后压力。</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section data-transition="slide">
+        <div class="slide-header">
+          <div class="eyebrow">主推款增长</div>
+          <h2>主推款：从新品验证到销售贡献</h2>
+          <p class="slide-note">
+            以 NFC 磁吸音乐盒冰箱贴为核心案例，展示产品判断、链接运营与广告测试带来的增长结果。
+          </p>
+        </div>
+        <div class="content-flex">
+          <div class="main-panel">
+            <h3>产品增长证据</h3>
+            <div class="image-grid">
+              <div class="proof-card">
+                <img src="etsy-promotion-assets/image12.png" alt="NFC音乐盒冰箱贴主推款销量截图" />
+                <div class="proof-caption">两条主推链接截图：近 30 天持续访问、收藏与销售表现。</div>
+              </div>
+              <div class="proof-card">
+                <img src="etsy-promotion-assets/image11.png" alt="近30天 Etsy Ads 数据截图" />
+                <div class="proof-caption">近 30 天广告 ROAS 4.98，广告收入 US$2,264.15。</div>
+              </div>
+            </div>
+            <div class="check-list">
+              <div class="check-item">
+                <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 6h16"/><path d="M4 12h10"/><path d="M4 18h7"/><path d="M17 14l3 3-3 3"/></svg></div>
+                <div>
+                  <div class="check-title">核心卖点持续放大</div>
+                  <div class="check-desc">围绕可定制照片、可定制歌曲、旋转发光和送礼属性进行页面表达，提升用户理解效率。</div>
+                </div>
+              </div>
+              <div class="check-item">
+                <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg></div>
+                <div>
+                  <div class="check-title">广告验证有效</div>
+                  <div class="check-desc">开店以来 ROAS 3.68，近 30 天提升至 4.98，说明广告投放方向和产品承接效率具备优化空间与持续价值。</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="side-panel">
+            <div class="metric-card orange">
+              <div class="metric-label">主推链接销量</div>
+              <div class="metric-value">128 sales</div>
+              <div class="metric-desc">截图中两条主推链接累计销售 105 + 23 单。</div>
+            </div>
+            <div class="metric-card green">
+              <div class="metric-label">近 30 天广告</div>
+              <div class="metric-value">ROAS 4.98</div>
+              <div class="metric-desc">广告订单 49，广告收入 US$2,264.15。</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">复盘提醒</div>
+              <div class="metric-value" style="font-size: 27px;">转化率不做主视觉</div>
+              <div class="metric-desc">后续在复盘中轻提：部分链接仍处冷启动爬坡阶段，重点优化主图、关键词、价格和评价积累。</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section data-transition="slide">
+        <div class="slide-header">
+          <div class="eyebrow">能力成长</div>
+          <h2>运营能力成长复盘</h2>
+          <p class="slide-note">
+            从“完成任务”升级为“对结果负责”：用市场调研、链接优化、广告投放和售后处理支撑经营结果。
+          </p>
+        </div>
+        <div class="content-flex">
+          <div class="main-panel">
+            <h3>能力模块</h3>
+            <div class="small-grid">
+              <div class="mini-card"><div class="mini-label">市场调研</div><div class="mini-value">识别新品机会</div></div>
+              <div class="mini-card"><div class="mini-label">竞品分析</div><div class="mini-value">找到差异化卖点</div></div>
+              <div class="mini-card"><div class="mini-label">链接表达</div><div class="mini-value">突出定制与送礼</div></div>
+              <div class="mini-card"><div class="mini-label">广告投放</div><div class="mini-value">ROAS 持续优化</div></div>
+              <div class="mini-card"><div class="mini-label">售后处理</div><div class="mini-value">应对芯片和制作问题</div></div>
+              <div class="mini-card"><div class="mini-label">复盘意识</div><div class="mini-value">识别交付短板</div></div>
+            </div>
+          </div>
+          <div class="side-panel">
+            <div class="metric-card orange">
+              <div class="metric-label">最大成长</div>
+              <div class="metric-value" style="font-size: 27px;">从执行到判断</div>
+              <div class="metric-desc">能够基于市场、竞品、用户场景和供应链判断产品是否值得测试。</div>
+            </div>
+            <div class="metric-card green">
+              <div class="metric-label">经营意识</div>
+              <div class="metric-value" style="font-size: 27px;">关注结果闭环</div>
+              <div class="metric-desc">不只看上架数量，也关注流量、订单、广告效率、售后和复购难度。</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section data-transition="slide">
+        <div class="slide-header">
+          <div class="eyebrow">沉淀贡献</div>
+          <h2>可复制经验与团队贡献</h2>
+          <p class="slide-note">
+            当前阶段先沉淀个人方法，后续补充 SOP、经验分享或协助同事案例，让个人经验变成可复用能力。
+          </p>
+        </div>
+        <div class="content-flex">
+          <div class="main-panel">
+            <h3>已形成的方法沉淀</h3>
+            <div class="check-list">
+              <div class="check-item">
+                <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M8 7h8"/><path d="M7 12h10"/><path d="M9 17h6"/><path d="M5 3h14v18H5z"/></svg></div>
+                <div>
+                  <div class="check-title">新品测试方法</div>
+                  <div class="check-desc">围绕平台稀缺度、定制空间、价格带、用户场景和供应链风险进行判断。</div>
+                </div>
+              </div>
+              <div class="check-item">
+                <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15v-4"/><path d="M12 15V8"/><path d="M16 15v-6"/></svg></div>
+                <div>
+                  <div class="check-title">经营数据复盘</div>
+                  <div class="check-desc">用销售、订单、广告 ROAS、售后问题判断产品是否继续放量或需要调整。</div>
+                </div>
+              </div>
+              <div class="check-item">
+                <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.8V17h8v-2.2A7 7 0 0 0 12 2z"/></svg></div>
+                <div>
+                  <div class="check-title">后续补充项</div>
+                  <div class="check-desc">可继续补充 SOP、表格模板、经验分享次数、协助同事事项等团队贡献证明。</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="side-panel">
+            <div class="metric-card orange">
+              <div class="metric-label">可沉淀方向</div>
+              <div class="metric-value" style="font-size: 27px;">新品冷启动清单</div>
+              <div class="metric-desc">调研、上架、广告、售后、复盘各阶段形成检查项。</div>
+            </div>
+            <div class="metric-card green">
+              <div class="metric-label">待补充数据</div>
+              <div class="metric-value" style="font-size: 27px;">SOP / 分享 / 协助</div>
+              <div class="metric-desc">后续有具体材料后，可直接替换为团队贡献亮点。</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section data-transition="fade">
+        <div class="slide-header">
+          <div class="eyebrow">总结展望</div>
+          <h2>总结 · 反思 · 展望</h2>
+          <p class="slide-note">
+            当前版本先呈现已完成的经营结果和核心反思，半年、一年目标后续可继续补充。
+          </p>
+        </div>
+        <div class="content-flex">
+          <div class="main-panel">
+            <h3>阶段总结</h3>
+            <div class="check-list">
+              <div class="check-item">
+                <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3-3 3 2 5-7"/></svg></div>
+                <div>
+                  <div class="check-title">从执行协助到独立负责</div>
+                  <div class="check-desc">已独立推进 Etsy 新店从 0 到 1，并围绕主推款完成市场判断、广告验证和经营复盘。</div>
+                </div>
+              </div>
+              <div class="check-item">
+                <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3l2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 16.3 6.7 19.1l1-5.8-4.2-4.1 5.9-.9L12 3z"/></svg></div>
+                <div>
+                  <div class="check-title">当前短板</div>
+                  <div class="check-desc">产品复购率较低，同类竞争出现后平台推流回落；交付周期不够快，自发货流程占用较多售前售后精力。</div>
+                </div>
+              </div>
+              <div class="check-item">
+                <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.8V17h8v-2.2A7 7 0 0 0 12 2z"/></svg></div>
+                <div>
+                  <div class="check-title">改进方向</div>
+                  <div class="check-desc">优化交付链路和售后标准，提升主推款生命周期，同时尽快测试新的店铺和产品方向。</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="side-panel">
+            <div class="metric-card orange">
+              <div class="metric-label">一季度目标</div>
+              <div class="metric-value" style="font-size: 27px;">再起 1 家新店</div>
+              <div class="metric-desc">从 0 到 1 再验证至少一家新的店铺。</div>
+            </div>
+            <div class="metric-card green">
+              <div class="metric-label">半年 / 一年目标</div>
+              <div class="metric-value" style="font-size: 27px;">待补充</div>
+              <div class="metric-desc">后续可按销售额、毛利额、人效比、稳定出单产品数拆成 SMART 目标。</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">晋升后定位</div>
+              <div class="metric-value" style="font-size: 27px;">持续承担 P4 经营责任</div>
+              <div class="metric-desc">以结果为导向，持续提升产品判断、店铺增长和可复制复盘能力。</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      controls: true,
+      progress: true,
+      center: true,
+      transition: "fade",
+      backgroundTransition: "fade",
+      width: 1280,
+      height: 720,
+      margin: 0.04
+    });
+  </script>
+</body>
+</html>
